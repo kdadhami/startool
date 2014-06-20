@@ -1,0 +1,45 @@
+<script type="text/javascript">
+
+var rowVisible = true;
+
+function toggleDisplay(tbl) {
+   var tblRows = tbl.rows;
+   for (i = 0; i < tblRows.length; i++) {
+      if (tblRows[i].className != "headerRow") {
+         tblRows[i].style.display = (rowVisible) ? "none" : "";
+      }
+   }
+   rowVisible = !rowVisible;
+}
+
+</script>
+
+<table id="theTable" border="1">
+   <tr class="headerRow">
+      <th>test header</th>
+      <th>test header</th>
+      <th>test header</th>
+   </tr>
+   <tr>
+      <td>test</td>
+      <td>test</td>
+      <td>test</td>
+   </tr>
+   <tr>
+      <td>test</td>
+      <td>test</td>
+      <td>test</td>
+   </tr>
+   <tr>
+      <td>test</td>
+      <td>test</td>
+      <td>test</td>
+   </tr>
+   <tr>
+      <td>test</td>
+      <td>test</td>
+      <td>test</td>
+   </tr>
+</table>
+
+<input type="button" value="toggle row display" onclick="toggleDisplay(document.getElementById('theTable'))" />

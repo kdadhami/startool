@@ -1,0 +1,22 @@
+/* CSS Document */
+  body { font-family: Calibri, Helvetica, sans-serif;
+         font-size: 90%; 
+       }
+
+    td { font-family: Calibri, Helvetica, sans-serif;
+         font-size: 90%;
+         color: #151B8D; 
+       }
+
+ input { font-family: Arial;
+         font-size: 12px;
+         **font-weight:bold;
+         **background-color:336699;
+         **border-color:336699;
+         **border-style:inset;
+         **border-width:2px;
+         **color:FFFFFF;
+        }
+select { font-family: Arial;
+         font-size: 12px;
+       }

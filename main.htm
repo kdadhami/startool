@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+ <TITLE>Rogers - Enterprise UAT</TITLE>
+ <LINK REL=StyleSheet HREF="css/main.css" TYPE="text/css" MEDIA=screen>
+
+        <script type="text/javascript">
+        function addLoadEvent(func) {
+            var oldonload = window.onload;
+            if (typeof window.onload != 'function') {
+                window.onload = func;
+            } else {
+                window.onload = function() {
+                    if (oldonload) {
+                        oldonload();
+                    }
+                    func();
+                }
+            }
+        }
+        //addLoadEvent(function() {
+        //    document.getElementById('content2').innerHTML="<iframe src='test4.html' width='100%' height='100%' scrolling='auto' frameborder='no'></iframe>";
+        //})
+        addLoadEvent(function() {
+            //document.body.appendChild(document.getElementById('header').innerHTML="<iframe src='header.htm' width='100%' height='100%' scrolling='auto' frameborder='no'></iframe>");;
+            document.getElementById('content1').innerHTML="<iframe src='./signin.htm' width='100%' height='100%' scrolling='auto' frameborder='no'></iframe>";
+        })
+        </script>
+
+
+
+</HEAD>
+<BODY>
+
+  <div id="headtop">
+  </div>
+
+  <div id="headleft">
+  </div>
+
+  <div id="header">
+    <center>
+       <img src="images/rogers_logo.JPG">
+       <img src="images/rogers_logo2.JPG">
+    </center>
+  </div>
+
+  <div id="headright">
+  </div>
+
+  <div id="headbottom">
+  </div>
+
+  <div id="content1">
+  </div>
+
+  <div id="content2">
+  </div>
+
+  <div id="footer">
+	   <!--<table border="0" width="100%"><tr><td align="center">
+	    <font>-->
+       <!--<a href="newmain.htm">Home</a>&nbsp-->
+       <!--<label>|&nbsp</label>
+       <a href="#">Contact Us</a>&nbsp-->
+     <!--</font>
+   </td></tr></table>-->
+  </div>
+
+</BODY>
+</HTML>

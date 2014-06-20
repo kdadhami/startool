@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!--<title>Simple Javascript Accordions - by www.dezinerfolio.com</title>-->
+  <style type="text/css">
+   * {
+      margin:0;
+      padding:0;
+      list-style:none;
+     }
+   body {
+      font-family: Arial, Helvetica, sans-serif;
+	  font-size: 11px;
+	  margin:10px;
+   }
+   #basic-accordian{
+     /*border:5px solid #EEE;*/
+	padding:5px;
+	width:90%;
+	position:absolute;
+	left:2%;
+	top:0%;
+	/*margin-left:-10px;
+	z-index:2;
+	margin-top:-10px;*/
+}
+
+.accordion_headings{
+	padding:5px;
+	background:#99CC00;
+	color:#FFFFFF;
+	border:1px solid #FFF;
+	cursor:pointer;
+	font-weight:bold;
+}
+
+.accordion_headings:hover{
+	background:#00CCFF;
+}
+
+.accordion_child{
+	padding:15px;
+	background:#EEE;
+}
+
+.accordion_child a:link {
+text-decoration: none;
+color: #2554C7;
+}
+
+.accordion_child a:visited {
+text-decoration: none;
+color: #2554C7;
+}
+
+.accordion_child a:hover {
+text-decoration: underline overline;
+color: #2554C7;
+}
+
+.accordion_child a:active {
+text-decoration: none;
+color: #FF0000; /*#2554C7;*/
+}
+
+.header_highlight{
+	background:#00CCFF;
+}
+
+  </style>
+  <script type="text/javascript" src="js/accordian.js"></script>
+        <!--
+		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.custom.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+
+  			// Datepicker
+				$('#datepicker').datepicker({
+					inline: true
+				});
+	</script>
+    -->
+
+ </head>
+ <body onload="new Accordian('basic-accordian',7,'header_highlight');">
+  <div id="basic-accordian" ><!--Parent of the Accordion-->
+  <!--<div align="center">Simple Accordions</div>-->
+   <!--Start of each accordion item-->
+   <div id="test-header" class="accordion_headings header_highlight" >PDP Administrator
+   </div>
+   <div id="test-content">
+    <div class="accordion_child">
+      <ul>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;userform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Users</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;userform2.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Users2</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;rolesform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Roles</a>
+       <li>&nbsp</li>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;pdptypesform2.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">PDP Types</a>	   
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;issueareasform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Departments</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;pdpstlcform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">PDP Work</a>
+	   <li>&nbsp</li>	   
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;pdpcategoriesform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">PDP Scope Categories</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;issueclassform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Cause Types</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;reportgroupform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Cause Report Groups</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;issuecategoriesform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Issue Cause</a>
+	   <li>&nbsp</li>	   
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;resetpassword.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Password Reset</a>
+	  </ul>
+    </div>
+   </div>
+   <!--End of each accordion item--> 
+   <!--Start of each accordion item-->
+   <div id="test2-header" class="accordion_headings" >PDP Issues
+   </div>
+   <div id="test2-content">
+    <div class="accordion_child">
+      <ul>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;enter_issue_new.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Raise New Issue</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;enter_issue_existing_2.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Update Existing Issue</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;void_issue_existing.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Void Existing Issues</a>
+	  </ul>
+    </div>
+   </div>
+   <!--End of each accordion item--> 
+   <!--Start of each accordion item-->
+   <div id="test6-header" class="accordion_headings" >Scoping
+   </div>
+   <div id="test6-content">
+    <div class="accordion_child">
+      <ul>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;setup_pdp2_cm.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Scoping</a>
+	  </ul>
+    </div>
+   </div>
+   <!--End of each accordion item-->   
+   <!--Start of each accordion item-->
+   <div id="test4-header" class="accordion_headings" >PDP Tracker
+   </div>
+   <div id="test4-content">
+    <div class="accordion_child">
+      <ul>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;executioncontrol_cm.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">PDP Tracker CM</a>
+	  </ul>
+    </div>
+   </div>
+   <!--End of each accordion item--> 
+   <!--Start of each accordion item-->  
+   <div id="test7-header" class="accordion_headings" >Sign-Out
+   </div>
+   <div id="test7-content">
+    <div class="accordion_child">
+      <ul>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;login.php?signout=1&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Sign-Out</a>
+	  </ul>
+    </div>
+   </div>
+   <!--End of each accordion item-->   
+  </div><!--End of accordion parent-->
+ </body>
+</html>

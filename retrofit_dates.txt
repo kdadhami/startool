@@ -1,0 +1,190 @@
+		/// Retrofit Start to preserve old time for milestone_surrogates
+		/////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////
+		
+		if ($uissue_area == 'ENTERPRISE UAT'){
+            $query9 = "select area_execution_id,pdp_id,issue_area_id
+                         from ".$name.".area_execution   
+                        where issue_area_id = '$uissue_area_id'
+                       order by pdp_id,area_execution_id ";
+            $mysql_data9 = mysql_query($query9, $mysql_link) or die ("#1.Retrofit Could not query: ".mysql_error());
+            $rowcnt9 = mysql_num_rows($mysql_data9);    
+
+            $tbl[1][1] = "area_execution";
+            $tbl[1][2] = 1;
+            $idx[1][1] = "index_area_execution";
+            $kee[1][1] = "pdp_id".","."issue_area_id".","."test_iteration"; 
+ 
+            $tbl[2][1] = "area_execution";
+            $tbl[22][2] = 3;
+            $idx[2][1] = "index_area_execution_2";
+            $kee[2][1] = "pdp_id".","."execution_id".","."milestone_id"; 
+
+            for ($x=1;$x<=12;++$x) {
+                 $tbl_name  = $tbl[$x][1];
+                 $idx_count = $tbl[$x][2];
+                 //print($tbl_name."<br>".$idx_count."<br>"."<br>");
+                 for ($y=1;$y<=$idx_count;++$y) {
+                      $idx_name = $idx[$x][$y];
+                      $idx_key  = $kee[$x][$y];
+                      $query = "ALTER TABLE ".$name.".$tbl_name DROP INDEX $idx_name" ;
+                      $mysql_data = mysql_query($query, $mysql_link); // or die ("Drop Index #$x."-".$y Could not query: ".mysql_error());
+                      //print("$idx_name dropped for $tbl_name<br>");
+                      $query = "ALTER TABLE ".$name.".$tbl_name ADD INDEX $idx_name ($idx_key)" ;
+                      $mysql_data = mysql_query($query, $mysql_link) or die ("Indexing #$x."-".$y Could not query: ".mysql_error());
+                      //print("$idx_name rebuilt for $tbl_name<br>");
+                 }
+            }
+			
+			
+            $e = 0;
+            if ($rowcnt9 == 1){
+                while($rowx9 = mysql_fetch_row($mysql_data9)) {
+                  $e = $e + 1;
+				  $yarea_execution_id = stripslashes($rowx9[0]);
+                  $xstart_date[$key2][$e]     = mktime(0,0,0,$xms[$key2][$e],$xds[$key2][$e],$xys[$key2][$e]);
+                  $xend_date[$key2][$e]       = mktime(0,0,0,$xme[$key2][$e],$xde[$key2][$e],$xye[$key2][$e]);
+                  $xact_start_date[$key2][$e] = mktime(0,0,0,$xmab[$key2][$e],$xdab[$key2][$e],$xyab[$key2][$e]);
+                  $xact_end_date[$key2][$e]   = mktime(0,0,0,$xma[$key2][$e],$xda[$key2][$e],$xya[$key2][$e]);
+				  $st_dt                      = $xds[$key2][$e]."-".$xms[$key2][$e]."-".$xys[$key2][$e];
+				  $end_dt                     = $xde[$key2][$e]."-".$xme[$key2][$e]."-".$xye[$key2][$e];
+				  $ast_dt                     = $xdab[$key2][$e]."-".$xmab[$key2][$e]."-".$xyab[$key2][$e];
+				  $aend_dt                    = $xda[$key2][$e]."-".$xma[$key2][$e]."-".$xya[$key2][$e];
+
+                  // Regular Dates				  
+				  $date_check[$e] = 0;
+				  $err_check[$e]  = 0;
+				  if ($xstart_date[$key2][$e] == 1167627600 or $xend_date[$key2][$e] == 1167627600){
+					  $date_check_msg_a[$e] = "1. DEFAULT VALUE CHECK FOR PLANNED DATES:"."\\n"."One or both of Start or End Date is a default "."1-1-2007"."\\n\\n";
+				      if ($xstart_date[$key2][$e] > $xend_date[$key2][$e]){
+					      $xend_date[$key2][$e] = $xstart_date[$key2][$e];
+						  $date_check_msg_b[$e] = "2. START-END CHECK FOR PLANNED DATES:"."\\n"."Start Date ".$st_dt." was greater then End Date ".$end_dt." ,End Date is now made same as start Date ".$st_dt."\\n\\n";
+					  }
+					  $date_check_msg[$e] = $date_check_msg_a[$e].$date_check_msg_b[$e];
+					  $err_check[$e] = 1; 
+   				      $date_check[$e] = 1;
+				  } else {
+				      if ($xstart_date[$key2][$e] > $xend_date[$key2][$e]){
+					      $xend_date[$key2][$e] = $xstart_date[$key2][$e];
+					      $date_check_msg[$e] = "2. START-END CHECK:"."\\n"."Start Date".$st_dt." was greater then End Date ".$end_dt." ,End Date is now made same as Start Date ".$st_dt."\\n\\n"; 
+					      $err_check[$e]     = 2;
+					  }
+			          $date_check[$e]     = 2;
+				  }
+                  // Actual Dates
+				  $act_date_check[$e] = 0;
+				  $act_err_check[$e]  = 0;
+				  if ($xact_start_date[$key2][$e] == 1167627600 or $xact_end_date[$key2][$e] == 1167627600){
+				      $act_date_check_msg_a[$e] = "3. DEFAULT VALUE CHECK FOR ACTUAL DATES:"."\\n"."One or both of Actual Start or Actual End Date is a default date "."1-1-2007"."\\n\\n";
+				      if ($xact_start_date[$key2][$e] > $xact_end_date[$key2][$e]){
+					      $xact_end_date[$key2][$e] = $xact_start_date[$key2][$e];
+						  $act_date_check_msg_b[$e] = "4. START-END CHECK FOR ACTUAL DATES:"."\\n"."Actual Start Date ".$ast_dt." was greater then Actual End Date ".$aend_dt." ,Actual End Date is now made same as Actual Start Date ".$ast_dt."\\n\\n";
+					  }
+					  $act_date_check_msg[$e] = $act_date_check_msg_a[$e].$act_date_check_msg_b[$e];
+					  $act_err_check[$e]  = 1;
+ 				      $act_date_check[$e] = 1;
+				  } else {
+				      if ($xact_start_date[$key2][$e] > $xact_end_date[$key2][$e]){
+					      $xact_end_date[$key2][$e] = $xact_start_date[$key2][$e];
+  					      $act_date_check_msg[$e] = "4. START-END CHECK FOR ACTUAL DATES:"."\\n"."Actual Start Date".$ast_dt." was greater then Actual End Date ".$aend_dt." ,End Date is now made same as Actual Start Date ".$ast_dt."\\n\\n"; 
+                          $act_err_check[$e] = 2;
+					  }
+					  $act_date_check[$e] = 2;
+				  }
+                  // Derive Week and Weekend Days for Actual Dates
+                                        $ywkday_a = 0;
+                                        $ywkend_a = 0;
+                                        if ($xact_end_date[$key2][$e] >= $xact_start_date[$key2][$e]){
+                                            $ytestingdays_a = round((($xact_end_date[$key2][$e] - $xact_start_date[$key2][$e]) / 86400)+1,0);   //+1 counts including the actual_start_date
+                                            $ybasedt2       = $xact_start_date[$key2][$e];
+											//print($testingdays_a."<br>");
+                                            for ($ydts=1; $ydts<=$ytestingdays_a; ++$ydts) {
+											     if ($ydts == 1){
+												     $ydatval  = $ybasedt2;
+												 } else {
+                                                   $ydatval  = $ybasedt2 + (86400*($ydts-1));
+												 }
+                                                 $ynewdate = (string)$ydatval; 
+                                                 $ydtday   = date("D",$ynewdate);
+												 //print($dts." - ".$datval." - ".$dtday."<br>");
+                                                 if (($ydtday == "Mon") || ($ydtday == "Tue") || ($ydtday == "Wed") || ($ydtday == "Thu") || ($ydtday == "Fri")) {
+                                                      $ywkday_a = $ywkday_a + 1;     
+                                                 }     
+                                                 if (($ydtday == "Sat") || ($ydtday == "Sun")){
+                                                      $ywkend_a = $ywkend_a + 1;     
+                                                 }     
+                                            }
+                                            $ydays_a  = $ytestingdays_a." Days Available<br>( ".$ywkday_a." Weekdays and ".$ywkend_a." Weekend Days)";
+											//print($ydays_a."<br>");
+                                        }				  
+				  
+                  if ($date_check[$e] ==2 && $act_date_check[$e] == 1){
+				      $xact_start_date[$key2][$e] = $xstart_date[$key2][$e];
+                      $xact_end_date[$key2][$e]   = $xend_date[$key2][$e]; 
+				  }	
+
+                  				  
+				  
+                                $nback_to_build       = (int)$yback_to_build[$key2][$e];
+                                $nstart_date          = (int)$xstart_date[$key2][$e];
+                                $nend_date            = (int)$xend_date[$key2][$e];
+                                $nact_end_date        = (int)$xact_end_date[$key2][$e];
+                                $nact_start_date      = (int)$xact_start_date[$key2][$e];
+                                $nactual_testing_days = (int)$yactual_testing_days[$key2][$e];
+                                $nactual_weekend_days = (int)$yactual_weekend_days[$key2][$e];
+								$err_check_3a[$e] = 0;
+								$err_check_3b[$e] = 0;
+								$err_check_3[$e]  = 0;
+								if ($ywkday_a >= $nactual_testing_days){
+								} else {
+								    // if $nactual_testing_days < $ywkday_a
+								    $nactual_testing_days = 0;
+									$err_check_3a[$e] = 1;
+									$err_check_3a_msg[$e] = "Week days utilized has been reset to 0\\n";
+								}
+								if ($ywkend_a >= $nactual_weekend_days){
+								} else {
+								    // if $nactual_weekend_days < $ywkend_a
+								    $nactual_weekend_days = 0;
+									$err_check_3b[$e] = 2;
+									$err_check_3b_msg[$e] = "Weekend days utilized has been reset to 0\\n";
+								}
+								$err_check_3[$e] = $err_check_3a[$e] + $err_check_3b[$e];
+								if ($err_check_3[$e] == 1){
+								    $err_check_3_msg[$e] = $err_check_3a_msg[$e];
+								} 
+								if ($err_check_3[$e] == 2){
+								    $err_check_3_msg[$e] = $err_check_3b_msg[$e];
+								}
+								if ($err_check_3[$e] == 3){
+								    $err_check_3_msg[$e] = $err_check_3a_msg[$e].$err_check_3b_msg[$e];
+								}
+
+                                $query10 = "UPDATE ".$name.".area_execution
+                                               SET updated_by            = '$usr', 
+                                                   last_update           = current_timestamp, 
+                                                   back_to_build         = '$nback_to_build',
+                                                   start_date            = '$nstart_date',  
+                                                   end_date              = '$nend_date',
+                                                   actual_end_date       = '$nact_end_date ',
+                                                   actual_start_date     = '$nact_start_date ',
+                                                   actual_testing_days   = '$nactual_testing_days', 
+                                                   actual_weekend_days   = '$nactual_weekend_days' 
+                                             WHERE pdp_id                = '$pdpid'
+                                               AND issue_area_id         = '$uissue_area_id'
+                                               AND test_iteration        = '$e' ";
+                                //print($query10."<br>".$key2);            
+                                $mysql_data10 = mysql_query($query10, $mysql_link) or die ("#30 Could not query: ".mysql_error()); 
+
+                                $tracesql  = "INSERT into ".$name.".area_execution_archive(pdp_id,issue_area_id,test_iteration,start_date,end_date,actual_start_date,actual_end_date,actual_testing_days,actual_weekend_days,back_to_build,updated_by,area_execution_id)
+                                              VALUES('$pdpid','$uissue_area_id','$e','$nstart_date','$nend_date','$nact_start_date','$nact_end_date','$nactual_testing_days','$nactual_weekend_days','$nback_to_build','$usr','$yarea_execution_id')";
+                                $mysql_tracesql = mysql_query($tracesql, $mysql_link) or die ("#trace2 Could not query: ".mysql_error());
+               }
+            } 
+        }
+
+		/// Retrofit End to preserve old time for milestone_surrogates
+		/////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////

@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!--<title>Simple Javascript Accordions - by www.dezinerfolio.com</title>-->
+  <style type="text/css">
+   * {
+      margin:0;
+      padding:0;
+      list-style:none;
+     }
+   body {
+      font-family: Arial, Helvetica, sans-serif;
+	  font-size: 11px;
+	  margin:10px;
+   }
+   #basic-accordian{
+     /*border:5px solid #EEE;*/
+	padding:5px;
+	width:90%;
+	position:absolute;
+	left:2%;
+	top:0%;
+	/*margin-left:-10px;
+	z-index:2;
+	margin-top:-10px;*/
+}
+
+.accordion_headings{
+	padding:5px;
+	background:#99CC00;
+	color:#FFFFFF;
+	border:1px solid #FFF;
+	cursor:pointer;
+	font-weight:bold;
+}
+
+.accordion_headings:hover{
+	background:#00CCFF;
+}
+
+.accordion_child{
+	padding:15px;
+	background:#EEE;
+}
+
+.accordion_child a:link {
+text-decoration: none;
+color: #2554C7;
+}
+
+.accordion_child a:visited {
+text-decoration: none;
+color: #2554C7;
+}
+
+.accordion_child a:hover {
+text-decoration: underline overline;
+color: #2554C7;
+}
+
+.accordion_child a:active {
+text-decoration: none;
+color: #FF0000; /*#2554C7;*/
+}
+
+.header_highlight{
+	background:#00CCFF;
+}
+
+  </style>
+  <script type="text/javascript" src="js/accordian.js"></script>
+        <!--
+		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.custom.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+
+  			// Datepicker
+				$('#datepicker').datepicker({
+					inline: true
+				});
+	</script>
+    -->
+
+ </head>
+ <body onload="new Accordian('basic-accordian',7,'header_highlight');">
+  <div id="basic-accordian" ><!--Parent of the Accordion-->
+  <!--<div align="center">Simple Accordions</div>-->
+   <!--Start of each accordion item-->
+   <div id="test-header" class="accordion_headings header_highlight" >Backoffice
+   </div>
+   <div id="test-content">
+    <div class="accordion_child">
+      <ul>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;userform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Users</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;loadpdpinfo.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Load PDP</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;setup_pdp.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">List PDP</a>
+       <li>&nbsp</li>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;etl.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">ETL</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;etl_monitor.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">ETL Monitor</a>
+       <li>&nbsp</li>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;cubeform.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Cubes</a>
+	  </ul>
+    </div>
+   </div>
+   <!--End of each accordion item--> 
+   <!--Start of each accordion item-->  
+   <div id="test5-header" class="accordion_headings" >Reports
+   </div>
+   <div id="test5-content">
+    <div class="accordion_child">
+      <ul>
+	   <!--<li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_pdp4.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">PDP Summary Report</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_pdp5.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">PDP Summary Report(2)</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_prd.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Issues by PDP Type</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_prd6.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Summary by PDP Type</a>-->
+	   <!--<li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_prd11.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">kda test</a>-->
+	   <!--<li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_prd17.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">ETL</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;etl_monitor.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">ETL Monitor</a>-->
+	   <!--<li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_prd11.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">kda test3</a>-->
+	   <!--<li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;kdatest5.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">kda test5</a>-->
+	   <!--<li>&nbsp</li>-->
+	   <!--<li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;report1.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Scoping</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;report2.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Issues</a>-->
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;report4.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Report</a>
+	   <!--<li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;setup_pdp4.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">PDP by periods</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;setup_pdp2.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">PDP by periods2</a>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_pdp2.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Issues & Updates By PDP</a>-->
+	   <!--<li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;list_by_prd2.php&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Issues & Updates By Period</a>-->
+	  </ul>
+    </div>
+   </div>
+   <!--End of each accordion item-->    
+   <!--Start of each accordion item-->  
+   <div id="test7-header" class="accordion_headings" >Sign-Out
+   </div>
+   <div id="test7-content">
+    <div class="accordion_child">
+      <ul>
+	   <li><a href="#" onclick="parent.document.all['content2'].innerHTML='&lt;iframe src=&quot;login.php?signout=1&quot; width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;auto&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;'">Sign-Out</a>
+	  </ul>
+    </div>
+   </div>
+   <!--End of each accordion item-->   
+  </div><!--End of accordion parent-->
+ </body>
+</html>

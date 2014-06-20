@@ -1,0 +1,14 @@
+
+body {background: #C3FDB8;}
+
+#headtop {width: 100%; height: 1%; background: #FF0000;} 
+#headleft {width: 1%; height: 4%; background: #FF0000;}
+#header {width: 98%; height: 4%; background: #FFFFFF;}
+#headright {width: 1%; height: 4%; background: #FF0000;}
+#headbottom {width: 100%; height: 1%; background: #FF0000;} 
+
+#content1 {width: 15%; height: 88%; background: #FFFF00;}
+#content2 {width: 85%; height: 88%; background: #FFFFF0;}
+#footer {width: 100%; height: 6%; background: #EBEBEB;}
+
+#headtop,#headleft,#header,#headright,#headbottom,#content1,#content2,#footer {overflow:hidden;display:inline-block; float:left}

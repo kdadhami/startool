@@ -1,0 +1,124 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+
+<title>Expand / Collapse</title>
+
+<script>
+      var toggledDisplay = new Object();
+    toggledDisplay['sub1'] = true;
+    toggledDisplay['sub2'] = true;
+    toggledDisplay['sub3'] = true;
+
+function toggleDisplay(bDisplayed)
+{
+  if(!document.getElementById || toggleDisplay.arguments.length < 2) return;
+  var displayed = new Object();
+      displayed['true'] = 'block';
+      displayed['false'] = 'none';
+  for(var i = 1; i < toggleDisplay.arguments.length; i++)
+  {
+    oDisplay = document.getElementById(toggleDisplay.arguments[i]);
+    if(oDisplay)
+    {
+      oDisplay.style.display = displayed[bDisplayed];
+      // mozilla is the only browser out of the lot that can't get this right.  so, if we're
+      // setting an object's display style to block, we gotta reload any images contained
+      // within that block.  mozilla won't do it for you like every other browser that
+      // supports the functionality of changing the display style dynamically.
+      // begin crap browser hack
+      if(bDisplayed)
+      {
+        oImages = oDisplay.getElementsByTagName('IMG');
+        for(var j = 0; j < oImages.length; j++)
+          oImages[j].src = oImages[j].src;
+      }
+      // end mozilla, err, crap browser hack
+       if(typeof toggledDisplay[toggleDisplay.arguments[i]] != 'undefined')
+        toggledDisplay[toggleDisplay.arguments[i]] = !bDisplayed;
+    }
+  }
+}
+
+</script>
+
+</HEAD>
+<BODY>
+
+  <a href="JavaScript://" onclick="toggleDisplay(true, 'sub1', 'sub2', 'sub3' , 'sub4', 'sub5', 'sub6', 'sub7');">Expand All</a> | <a href="JavaScript://" onclick="toggleDisplay(false, 'sub1', 'sub2', 'sub3' , 'sub4', 'sub5', 'sub6', 'sub7');">Collapse All</a>
+<font color="#000000">
+<table border="1">
+    <tr>
+        <th>Fname</th>
+        <th>LName</th>
+        <th>Title</th>
+    </tr>
+    <tr>
+        <td colspan="3"><a href="JavaScript://" onclick="toggleDisplay(toggledDisplay['sub1'], 'sub1')">Corporate Staff</a><td>
+    </tr>
+    <tr id="sub1">
+            <td colspan="3">
+            <table>
+            <tr>
+                <td>User 1</td>
+                <td>User 1</td>
+                <td>User 1</td>
+            </tr>
+            <tr>
+                <td>User 2</td>
+                <td>User 2</td>
+                <td>User 2</td>
+            </tr>
+            <tr>
+                <td>User 3</td>
+                <td>User 3</td>
+                <td>User 3</td>
+            </tr>
+            </table>
+            </td>
+    </tr>    
+    <tr>
+        <td colspan="3"><a href="JavaScript://" onclick="toggleDisplay(toggledDisplay['sub2'], 'sub2')">Group one</a></td>
+    </tr>
+    <tr id="sub2">
+            <td colspan="3">
+            <table>
+            <tr>
+                <td>User 1</td>
+                <td>User 1</td>
+                <td>User 1</td>
+            </tr>
+            <tr>
+                <td>User 2</td>
+                <td>User 2</td>
+                <td>User 2</td>
+            </tr>
+            </td>            
+            </table>
+    </tr>    
+    <tr>
+        <td colspan="3"><a href="JavaScript://" onclick="toggleDisplay(toggledDisplay['sub3'], 'sub3')">Group Two</a></td>
+    </tr>
+    <tr id="sub3">
+            <td colspan="3">
+            <table>
+            <tr>
+                <td>User 1</td>
+                <td>User 1</td>
+                <td>User 1</td>
+            </tr>            
+            </table>
+            </td>
+    </tr>    
+</table>
+</font>
+      
+  <script language="JavaScript" type="text/javascript">
+  <!--
+    toggleDisplay(false, 'sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6', 'sub7');
+    toggleDisplay(true, 'toggleAll');
+  //-->
+  </script>
+
+</BODY>
+</HTML>

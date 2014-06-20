@@ -1,0 +1,32 @@
+/* CSS Document */
+  body { font-family: Calibri, Helvetica, sans-serif;
+         font-size: 12px; 
+       }
+    td { font-family: Calibri, Helvetica, sans-serif;
+         font-size: 12px;
+         color: #FFFFFF; 
+       }
+       
+ input { font-family: Calibri, Helvetica, sans-serif;
+         font-size: 12px;
+         /*font-weight:bold;
+         background-color:336699;
+         border-color:336699;
+         border-style:inset;
+         border-width:2px;
+         color:FFFFFF;**/
+       }
+select { font-family: Calibri, Helvetica, sans-serif;
+         font-size: 12px;
+       }                   
+#content
+       { /*border:5px solid #EEE;*/
+	     /*padding:5px;
+	     width:90%;
+	     position:absolute;
+	     left:2%;*/
+	     top:0%;
+	     /*margin-left:-10px;
+	     z-index:2;
+         margin-top:-10px;*/
+       }
